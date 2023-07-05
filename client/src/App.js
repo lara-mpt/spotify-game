@@ -37,8 +37,9 @@ function App() {
               showHome ? <Home roundsPlayed={roundsPlayed} score={score} startGame={startGame}/>
                   : (
                       <div>
-                          <Round albumData={albumsData} newRound={newRound} />
+                          <p>Guess which album artwork matches the track!</p>
                           <audio src={albumsData.track.preview_url} controls controlsList="noplaybackrate nodownload" autoPlay={true}/>
+                          <Round albumData={albumsData} newRound={newRound} />
                           <p>Score: {score}/{roundsPlayed}</p>
                       </div>
                   )
