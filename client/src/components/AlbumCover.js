@@ -9,9 +9,14 @@ function AlbumCover(props) {
         setAlbumName(" ");
     }, [props.albumData]);
 
-    const correctAlbumCover = (albumId) => {
+    const albumCoverGuessed = (albumId) => {
+        const isCorrectAlbum = albumId === props.albumData?.albumNumber;
+        props.albumGuessed(isCorrectAlbum);
+        updateCoverStyle(isCorrectAlbum);
+    }
+    const updateCoverStyle = (isCorrectAlbum) => {
         setAlbumName(props.albumData?.albums[props.id].name + " - " + props.albumData?.albums[props.id].artists[0].name);
-        if (albumId === props.albumData?.albumNumber) {
+        if (isCorrectAlbum) {
             setCoverStyle('cover-green')
         } else {
             setCoverStyle('cover-red')
@@ -21,7 +26,7 @@ function AlbumCover(props) {
     return (
         <div className={'albumCovers'}>
             <p>{albumName} &nbsp;</p>
-            <img onClick={() => correctAlbumCover(props.id)}
+            <img onClick={() => albumCoverGuessed(props.id)}
                  className={coverStyle}
                  src={props.albumData?.albums[props.id].images[1].url}
                  id={props.id}
