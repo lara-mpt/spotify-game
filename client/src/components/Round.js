@@ -18,13 +18,14 @@ function Round(props) {
 
     return (
         <div>
-            {answeredQuestion ? <ArrowRight className={'nextQuestion'} onClick={props.newRound}>New round</ArrowRight> : ""}
+            <audio src={props.albumData.track.preview_url} controls controlsList="noplaybackrate nodownload" autoPlay={true}/>
+            {answeredQuestion ? <ArrowRight className={'nextQuestion'} onClick={props.newRound}>New round</ArrowRight> : <p>&nbsp;</p>}
             <div className={'albumCoversBoard'}>
                 <AlbumCover id={0} albumData={props.albumData} albumGuessed={albumGuessed}/>
                 <AlbumCover id={1} albumData={props.albumData} albumGuessed={albumGuessed}/>
                 <AlbumCover id={2} albumData={props.albumData} albumGuessed={albumGuessed}/>
                 <AlbumCover id={3} albumData={props.albumData} albumGuessed={albumGuessed}/>
-            </div>)
+            </div>
         </div>
     )
 }

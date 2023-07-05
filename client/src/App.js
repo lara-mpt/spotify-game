@@ -43,7 +43,6 @@ function App() {
                   : (
                       <div>
                           <p>Guess which album artwork matches the track!</p>
-                          <audio src={albumsData.track.preview_url} controls controlsList="noplaybackrate nodownload" autoPlay={true}/>
                           <Round albumData={albumsData} newRound={newRound} updateScore={updateScore}/>
                           <p>Score: {score}/{roundsPlayed}</p>
                       </div>
