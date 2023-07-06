@@ -13,7 +13,7 @@ function App() {
     }
 
     const newRound = async() => {
-        if (roundsPlayed !== 4) {
+        if (roundsPlayed < 5) {
             getAlbumData().then(() => setRoundsPlayed(roundsPlayed + 1));
         } else {
             setRoundsPlayed(5)
@@ -33,7 +33,7 @@ function App() {
         return res.json() // combine with the function above.
     }
 
-    const showHome = roundsPlayed === 0 || roundsPlayed === 10;
+    const showHome = roundsPlayed === 0 || roundsPlayed > 4;
 
     return (
       <div className="App">

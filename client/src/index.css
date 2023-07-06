@@ -24,8 +24,9 @@ body {
     padding: 16px;
 }
 
-h1, h2 {
+h2 {
     font-weight: 700;
+    font-size: 164%;
 }
 
 p {
@@ -39,6 +40,17 @@ audio {
 
 .nextQuestion, .startButton {
     cursor: pointer;
+    width: 5%;
+    height: 5%;
+    margin-left: 32px;
+}
+
+.startButton {
+    margin-top: 32px;
+}
+
+.nextQuestion:hover, .startButton:hover {
+    opacity: 0.6;
 }
 
 .cover, .cover-red, .cover-green {
@@ -49,7 +61,7 @@ audio {
 }
 
 .cover:hover {
-    opacity: 0.6;
+    opacity: 0.7;
     cursor: pointer;
 }
 
@@ -70,5 +82,5 @@ audio {
     grid-template-columns: 0.5fr 0.5fr;
     justify-items: center;
     padding: 8px;
-    grid-gap: 30px;
+    grid-gap: 2em;
 }
