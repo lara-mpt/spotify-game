@@ -3,13 +3,16 @@
     --light-alt: #61759b;
     --dark: #131A26;
     --dark-alt: #202B3E;
+    --red: #B22222;
+    --green: #228B22;
 }
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Fira Sans', sans-serif;
+    font-family: "Fira Sans", sans-serif;
+    text-align: center;
 }
 
 body {
@@ -18,27 +21,54 @@ body {
 }
 
 .App {
-    padding: 32px;
+    padding: 16px;
 }
 
-h1 {
-    font-size: 40px;
+h1, h2 {
     font-weight: 700;
-    margin-bottom: 32px;
 }
 
-.album {
+p {
+    margin-bottom: 4px;
+    font-weight: 500;
+}
+
+audio {
+    margin: 8px auto;
+}
+
+.nextQuestion, .startButton {
+    cursor: pointer;
+}
+
+.cover, .cover-red, .cover-green {
     position: relative;
-    background-color: var(--dark);
     padding: 16px;
     border-radius: 16px;
-    display: flex;
-    align-items: center;
     transition: 0.5s;
-    cursor: pointer;
-    margin-bottom: 16px;
 }
 
-.album:hover {
-    opacity: 0.8;
+.cover:hover {
+    opacity: 0.6;
+    cursor: pointer;
+}
+
+.cover {
+    background-color: var(--dark);
+}
+
+.cover-red {
+    background-color: var(--red);
+}
+
+.cover-green {
+    background-color: var(--green);
+}
+
+.albumCoversBoard {
+    display: inline-grid;
+    grid-template-columns: 0.5fr 0.5fr;
+    justify-items: center;
+    padding: 8px;
+    grid-gap: 30px;
 }

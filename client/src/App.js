@@ -13,10 +13,10 @@ function App() {
     }
 
     const newRound = async() => {
-        if (roundsPlayed !== 9) {
+        if (roundsPlayed !== 4) {
             getAlbumData().then(() => setRoundsPlayed(roundsPlayed + 1));
         } else {
-            setRoundsPlayed(10)
+            setRoundsPlayed(5)
         }
     }
 
@@ -37,12 +37,11 @@ function App() {
 
     return (
       <div className="App">
-        <h1>Spotify Game</h1>
           {
               showHome ? <Home roundsPlayed={roundsPlayed} score={score} startGame={startGame}/>
                   : (
                       <div>
-                          <p>Guess which album artwork matches the track!</p>
+                          <h2>Match the album cover to the track!</h2>
                           <Round albumData={albumsData} newRound={newRound} updateScore={updateScore}/>
                           <p>Score: {score}/{roundsPlayed}</p>
                       </div>

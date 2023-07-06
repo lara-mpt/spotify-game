@@ -25,13 +25,13 @@ function AlbumCover(props) {
 
     return (
         <div className={'albumCovers'}>
-            <p>{albumName} &nbsp;</p>
             <img onClick={() => albumCoverGuessed(props.id)}
                  className={coverStyle}
                  src={props.albumData?.albums[props.id].images[1].url}
                  id={props.id}
                  alt="An album cover"
             />
+            <p>{albumName} &nbsp;</p>
         </div>
     );
 }

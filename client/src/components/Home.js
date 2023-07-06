@@ -19,7 +19,7 @@ function Home(props) {
                     </div>
                 )
             }
-            <ArrowRightCircleFill className={"playButton"} onClick={props.startGame}></ArrowRightCircleFill>
+            <ArrowRightCircleFill className={"startButton"} onClick={props.startGame}></ArrowRightCircleFill>
         </div>
     )
 }
