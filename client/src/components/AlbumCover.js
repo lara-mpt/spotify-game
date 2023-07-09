@@ -1,35 +1,32 @@
 import React, {useState, useEffect} from 'react';
 
-function AlbumCover(props) {
+function AlbumCover({albumData, albumGuessed, id}) {
     const [coverStyle, setCoverStyle] = useState('cover');
-    const [albumName, setAlbumName] = useState('');
+    const [albumName, setAlbumName] = useState(' ');
 
     useEffect(() => {
         setCoverStyle('cover');
         setAlbumName(" ");
-    }, [props.albumData]);
+    }, [albumData]);
 
-    const albumCoverGuessed = (albumId) => {
-        const isCorrectAlbum = albumId === props.albumData?.albumNumber;
-        props.albumGuessed(isCorrectAlbum);
-        updateCoverStyle(isCorrectAlbum);
+    const isCorrectAlbum = (albumId) => {
+        const isCorrect = albumId === albumData.albumNumber;
+        albumGuessed(isCorrect);
+        updateCoverStyle(isCorrect);
     }
 
-    const updateCoverStyle = (isCorrectAlbum) => {
-        setAlbumName(props.albumData?.albums[props.id].name + " - " + props.albumData?.albums[props.id].artists[0].name);
-        if (isCorrectAlbum) {
-            setCoverStyle('cover-green')
-        } else {
-            setCoverStyle('cover-red')
-        }
+    const updateCoverStyle = (isCorrect) => {
+        const { name, artists } = albumData.albums[id];
+        setAlbumName(`${name} - ${artists[0].name}`);
+        setCoverStyle(isCorrect ? 'cover-green' : 'cover-red');
     }
 
     return (
         <div className={'albumCovers'}>
-            <img onClick={() => albumCoverGuessed(props.id)}
+            <img onClick={() => isCorrectAlbum(id)}
                  className={coverStyle}
-                 src={props.albumData?.albums[props.id].images[1].url}
-                 id={props.id}
+                 src={albumData.albums[id].images[1].url}
+                 id={id}
                  alt="An album cover"
             />
             <p>{albumName} &nbsp;</p>
