@@ -10,7 +10,7 @@ function AlbumCover({albumData, albumGuessed, id}) {
     }, [albumData]);
 
     const isCorrectAlbum = (albumId) => {
-        const isCorrect = albumId === albumData.albumNumber;
+        const isCorrect = albumId === albumData.albumIndex;
         albumGuessed(isCorrect);
         updateCoverStyle(isCorrect);
     }

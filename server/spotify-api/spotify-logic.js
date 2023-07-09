@@ -1,59 +1,53 @@
 const {getRandomOffset, getRandomSearch} = require("../utils/utils");
 const {spotifyApi} = require("./api");
 
-async function getNewRound() {
-    const numberOfAlbums = 4;
-    const albums = await getAlbums(numberOfAlbums);
-    const {track, albumNumber} = await getTrack(albums);
+const numberOfAlbums = 4;
 
-    return {albums, track, albumNumber}
+async function getNewRoundData() {
+    const albums = await getAlbums(numberOfAlbums);
+    const {track, albumIndex} = await getRandomTrack(albums);
+
+    return {albums, track, albumIndex}
 }
 
-const getTrack = (albums) => {
-    const albumNumber = getRandomOffset(4);
-    const album = albums[albumNumber];
+const getRandomTrack = (albums) => {
+    const albumIndex = getRandomOffset(numberOfAlbums);
+    const album = albums[albumIndex];
 
-    return new Promise((resolve, reject) => {
-        spotifyApi.getAlbumTracks(album.id).then(
-            function(data) {
-                const track = data.body.items[getRandomOffset(data.body.items.length)]
-                if (!track || !track.preview_url) {
-                    return getTrack(albums);
-                }
-                resolve({track, albumNumber});
-            },
-            function(err) {
-                reject(console.error(err));
+    return spotifyApi.getAlbumTracks(album.id).then(
+        data => {
+            const track = data.body.items[getRandomOffset(data.body.items.length)];
+            if (track && track.preview_url) {
+                return {track, albumIndex};
             }
-        );
-    })
+            return getRandomTrack(albums);
+        }
+    ).catch(err => {
+        console.error(err);
+        throw err;
+    });
 }
 
 async function getAlbums(numberOfAlbums) {
-    let promises = [];
-    for (let i = 0; i < numberOfAlbums; i++) {
-        promises.push(getAlbum())
-    }
-    return await Promise.all(promises);
+    return Promise.all(Array(numberOfAlbums).fill().map(() => fetchAlbumFromSpotify()));
 }
 
-const getAlbum = () => {
+const fetchAlbumFromSpotify = () => {
 
-    return new Promise((resolve, reject) => {
-        spotifyApi.searchAlbums(getRandomSearch(), {offset: getRandomOffset(200)}).then(
-            function(data) {
-                if (!data.body.albums.items[0]?.images[1].url) {
-                    return getAlbum();
-                }
-                resolve(data.body.albums.items[0]);
-            },
-            function(err) {
-                reject(console.error(err));
+    return spotifyApi.searchAlbums(getRandomSearch(), {offset: getRandomOffset(200)}).then(
+        data => {
+            const album = data.body.albums.items[0];
+            if (album?.images[1].url) {
+                return album;
             }
-        );
-    })
+            return fetchAlbumFromSpotify();
+        }
+    ).catch(err => {
+        console.error(err);
+        throw err;
+    });
 }
 
 module.exports = {
-    getNewRound
+    getNewRoundData: getNewRoundData
 };
