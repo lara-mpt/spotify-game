@@ -1,8 +1,7 @@
 import {ArrowRightCircleFill} from 'react-bootstrap-icons';
 
-function Home(props) {
-
-    const showStart = props.roundsPlayed === 0;
+function Home({ roundsPlayed, score, startGame }) {
+    const showStart = roundsPlayed === 0;
 
     return (
         <div>
@@ -14,12 +13,12 @@ function Home(props) {
                     </div>
                 ) : (
                     <div>
-                        <h2>Congratulations, you got a score of {props.score}/5</h2>
+                        <h2>Congratulations, you got a score of {score}/5</h2>
                         <p>Play again?</p>
                     </div>
                 )
             }
-            <ArrowRightCircleFill className={"startButton"} onClick={props.startGame}></ArrowRightCircleFill>
+            <ArrowRightCircleFill className={"startButton"} onClick={startGame}></ArrowRightCircleFill>
         </div>
     )
 }
