@@ -7,6 +7,8 @@ function App() {
     const [score, setScore] = useState(0);
     const [albumsData, setAlbumData] = useState(null);
 
+    const showHome = roundsPlayed === 0 || roundsPlayed > 5;
+
     const startGame = async() => {
         setScore(0);
         getAlbumData().then(() => setRoundsPlayed(1));
@@ -25,15 +27,10 @@ function App() {
     }
 
     const getAlbumData = async() => {
-        const data = await fetchAlbumData();
+        const response = await fetch('http://localhost:4000/newRound');
+        const data = await response.json();
         setAlbumData(data);
     }
-    const fetchAlbumData = async() => {
-        const res = await fetch('http://localhost:4000/newRound');
-        return res.json() // combine with the function above.
-    }
-
-    const showHome = roundsPlayed === 0 || roundsPlayed > 5;
 
     return (
       <div className="App">

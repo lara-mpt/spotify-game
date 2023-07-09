@@ -9,7 +9,6 @@ async function getNewRound() {
     return {albums, track, albumNumber}
 }
 
-
 const getTrack = (albums) => {
     const albumNumber = getRandomOffset(4);
     const album = albums[albumNumber];
