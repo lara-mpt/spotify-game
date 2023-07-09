@@ -10,8 +10,10 @@ function App() {
     const showHome = roundsPlayed === 0 || roundsPlayed > 5;
 
     const startGame = () => {
-        setScore(0);
-        getAlbumData().then(() => setRoundsPlayed(1)).catch(console.error);
+        getAlbumData().then(() => {
+            setScore(0);
+            setRoundsPlayed(1)
+        }).catch(console.error);
     };
 
     const newRound = () => {

@@ -20,7 +20,7 @@ function Home({ roundsPlayed, score, startGame }) {
     return (
         <div>
             {showStart ? startMessage : finishMessage}
-            <ArrowRightCircleFill className={"startButton"} onClick={startGame} />
+            <ArrowRightCircleFill className={"button startButton"} onClick={startGame} />
         </div>
     )
 }
