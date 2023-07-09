@@ -14,7 +14,7 @@ function Home(props) {
                     </div>
                 ) : (
                     <div>
-                        <h2>Congratulations, you got a score of {props.score}/10</h2>
+                        <h2>Congratulations, you got a score of {props.score}/5</h2>
                         <p>Play again?</p>
                     </div>
                 )

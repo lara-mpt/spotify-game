@@ -16,7 +16,7 @@ function App() {
         if (roundsPlayed < 5) {
             getAlbumData().then(() => setRoundsPlayed(roundsPlayed + 1));
         } else {
-            setRoundsPlayed(5)
+            setRoundsPlayed(6)
         }
     }
 
@@ -33,7 +33,7 @@ function App() {
         return res.json() // combine with the function above.
     }
 
-    const showHome = roundsPlayed === 0 || roundsPlayed > 4;
+    const showHome = roundsPlayed === 0 || roundsPlayed > 5;
 
     return (
       <div className="App">

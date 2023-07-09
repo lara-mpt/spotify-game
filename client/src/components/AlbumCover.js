@@ -14,6 +14,7 @@ function AlbumCover(props) {
         props.albumGuessed(isCorrectAlbum);
         updateCoverStyle(isCorrectAlbum);
     }
+
     const updateCoverStyle = (isCorrectAlbum) => {
         setAlbumName(props.albumData?.albums[props.id].name + " - " + props.albumData?.albums[props.id].artists[0].name);
         if (isCorrectAlbum) {
