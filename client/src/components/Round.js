@@ -1,17 +1,17 @@
 import React, {useEffect, useState} from "react";
 import {ArrowRight} from "react-bootstrap-icons";
 import AlbumCover from "./AlbumCover";
-function Round(props) {
+function Round({albumData, updateScore, newRound}) {
     const [answeredQuestion, setAnsweredQuestion] = useState(false);
 
     useEffect(() => {
         setAnsweredQuestion(false);
-        }, [props.albumData]
+        }, [albumData]
     );
 
     const albumGuessed = (isCorrectAlbum) => {
         if (!answeredQuestion && isCorrectAlbum) {
-            props.updateScore();
+            updateScore();
         }
         setAnsweredQuestion(true);
     }
@@ -19,14 +19,11 @@ function Round(props) {
     return (
         <div>
             <div>
-                <audio src={props.albumData.track.preview_url} controls controlsList="noplaybackrate nodownload" autoPlay={true}/>
-                {answeredQuestion ? <ArrowRight className={'nextQuestion'} onClick={props.newRound}>New round</ArrowRight> : <p>&nbsp;</p>}
+                <audio src={albumData.track.preview_url} controls controlsList="noplaybackrate nodownload" autoPlay/>
+                {answeredQuestion ? <ArrowRight className={'nextQuestion'} onClick={newRound}>New round</ArrowRight> : <p>&nbsp;</p>}
             </div>
-            <div className={'albumCoversBoard'}>
-                <AlbumCover id={0} albumData={props.albumData} albumGuessed={albumGuessed}/>
-                <AlbumCover id={1} albumData={props.albumData} albumGuessed={albumGuessed}/>
-                <AlbumCover id={2} albumData={props.albumData} albumGuessed={albumGuessed}/>
-                <AlbumCover id={3} albumData={props.albumData} albumGuessed={albumGuessed}/>
+            <div className='albumCoversBoard'>
+                {[0, 1, 2, 3].map(id => <AlbumCover key={id} id={id} albumData={albumData} albumGuessed={albumGuessed} />)}
             </div>
         </div>
     )
