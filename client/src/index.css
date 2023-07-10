@@ -1,6 +1,5 @@
 :root {
     --light: #EEE;
-    --light-alt: #61759b;
     --dark: #131A26;
     --dark-alt: #202B3E;
     --red: #B22222;
@@ -21,29 +20,17 @@ body {
 }
 
 .App {
-    padding: 16px;
-}
-
-h2 {
-    font-weight: 700;
-    font-size: 164%;
-}
-
-p {
-    margin-bottom: 4px;
-    font-weight: 500;
+    padding: 16px 0;
 }
 
 audio {
-    margin: 8px auto;
+    margin-top: 16px;
 }
 
 .button {
     position: relative;
     cursor: pointer;
-    width: 5%;
-    height: 5%;
-    margin-left: 32px;
+    font-size: 64px;
 }
 
 .button:active {
@@ -56,6 +43,10 @@ audio {
 
 .startButton {
     margin-top: 32px;
+}
+
+.nextRoundButton {
+    margin-left: 32px;
 }
 
 .cover, .cover-red, .cover-green {
@@ -88,4 +79,20 @@ audio {
     justify-items: center;
     padding: 8px;
     grid-gap: 2em;
+}
+
+/* Smartphones */
+@media only screen
+and (max-width : 800px) {
+    .nextRoundButton {
+        margin-left: 0;
+    }
+
+    .albumCoversBoard {
+        display: inline;
+    }
+
+    p {
+        padding-bottom: 8px;
+    }
 }

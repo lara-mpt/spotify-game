@@ -5,8 +5,9 @@ function Home({ roundsPlayed, score, startGame }) {
 
     const startMessage = (
         <div>
-            <h2>Welcome to Spotify Album Guesser!</h2>
-            <p>Press play to get started, and match up the album artwork to the track.</p>
+            <h2>Spotify Album Guesser</h2>
+            <br/>
+            <p>Press play to get started, and match up the album artwork to the track!</p>
         </div>
     );
 
