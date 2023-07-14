@@ -83,7 +83,7 @@ audio {
 
 /* Smartphones */
 @media only screen
-and (max-width : 800px) {
+and (max-width : 767px) {
     .nextRoundButton {
         margin-left: 0;
     }
