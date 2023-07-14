@@ -3,7 +3,7 @@ const {spotifyApi} = require("./api");
 
 const numberOfAlbums = 4;
 
-async function getNewRoundData() {
+async function getNextRoundData() {
     const albums = await getAlbums(numberOfAlbums);
     const {track, albumIndex} = await getRandomTrack(albums);
 
@@ -49,5 +49,5 @@ const fetchAlbumFromSpotify = () => {
 }
 
 module.exports = {
-    getNewRoundData: getNewRoundData
+    getNextRoundData: getNextRoundData
 };

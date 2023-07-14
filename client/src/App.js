@@ -16,7 +16,7 @@ function App() {
         }).catch(console.error);
     };
 
-    const newRound = () => {
+    const nextRound = () => {
         if (roundsPlayed < 5) {
             getAlbumData()
                 .then(() => setRoundsPlayed(prevRound => prevRound + 1))
@@ -32,7 +32,7 @@ function App() {
 
     const getAlbumData = async () => {
         try {
-            const response = await fetch('http://localhost:4000/newRound');
+            const response = await fetch('http://localhost:4000/nextRound');
             const data = await response.json();
             setAlbumData(data);
         } catch (error) {
@@ -48,7 +48,7 @@ function App() {
                   : (
                       <div>
                           <h2>Match the album cover to the track!</h2>
-                          <Round albumData={albumsData} newRound={newRound} updateScore={updateScore}/>
+                          <Round albumData={albumsData} nextRound={nextRound} updateScore={updateScore}/>
                           <p>Score: {score}/{roundsPlayed}</p>
                       </div>
                   )

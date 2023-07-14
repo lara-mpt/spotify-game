@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 require('dotenv').config();
-const {getNewRoundData} = require("./spotify-api/spotify-logic");
+const {getNextRoundData} = require("./spotify-api/spotify-logic");
 
 const PORT = process.env.PORT || 4000;
 
@@ -9,8 +9,8 @@ const app = express();
 
 app.use(cors());
 
-app.get('/newRound', function(req, res) {
-    getNewRoundData().then(data => {
+app.get('/nextRound', function(req, res) {
+    getNextRoundData().then(data => {
         res.send(data);
     }).catch(err => {
         console.log('Error occurred: ', err)
